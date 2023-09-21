@@ -1,0 +1,23 @@
+server:
+  port: 7100
+
+rapid-api:
+  baseUrl: https://forecast9.p.rapidapi.com
+  X-RapidAPI-Key: ecb0512c5emsh194afc73f099287p1767a5jsn8afb82169b86
+  X-RapidAPI-Host: forecast9.p.rapidapi.com
+
+
+feign:
+  client:
+    config:
+      default:
+        requestInterceptors:
+          com.dice.twitterDemo.interceptors.RapidApiRequestInterceptor
+  retry:
+    interval: 500
+    maxInterval: 2000
+    maxAttempts: 3
+
+logging:
+  level:
+    com.dice.twitterDemo.services.clients.RapidApiClient: DEBUG
